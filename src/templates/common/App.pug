@@ -1,0 +1,43 @@
+.basket#App
+  .basket__top-line
+    .basket__top-line_left
+      span.text Выделено 
+      span.number#countOfChecks
+    a(href="#").basket__top-line_right#deleteItem
+      i.fa.fa-window-close
+      span.text Удалить отмеченные
+  .basket__desc
+    ul.basket__list
+
+  .basket__footer
+    .basket__footer-top
+      p.basket__footer-raw
+        span.basket__footer-text Промежуточный итог по корзине:
+        span.basket__footer-price#subTotal
+      p.basket__footer-raw
+        span.basket__footer-text В том числе НДС:
+        span.basket__footer-price#taxTotal
+    .basket__footer-bottom
+      p.dot-line
+      p.basket__footer-total
+        span.basket__footer-total_text Итого:
+        span.basket__footer-total_price#totalPrice
+
+  | <script id="item-template" type="text/x-handlebars-template">
+  |   {{#each items}}
+  |   <li class='basket__item'>
+  |     <div class="basket__item-enum">
+  |       <label class="basket__item-checkbox" for="check_{{id}}">
+  |         <input class="visuallyhidden checkbox" type="checkbox" name="check" id="check_{{id}}">
+  |         <span class="checkbox-template"></span>
+  |       </label>
+  |       <span class="basket__item-id">{{inc @index}}</span>
+  |     </div>
+  |     <div class="basket__item-icon"><img class="basket__item-img" src="{{img}}" alt="{{name}}"></div>
+  |     <div class="basket__item-desc">{{name}}</div>
+  |     <div class="basket__item-price"><span class="basket__item-price_one">{{price}} р</span><span class="basket__item-price_one">X</span>
+  |       <input class="input basket__item-input" id="count" value="{{count}}" data-id="{{id}}" data-count="{{count}}" data-name="{{name}}" data-price="{{price}}"><span class="basket__item-price_one">=</span><span class="basket__item-price_total" id="total"></span>
+  |     </div>
+  |   </li>
+  |   {{/each}}
+  | </script>
