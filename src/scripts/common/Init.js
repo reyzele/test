@@ -18,20 +18,16 @@ function init() {
   items.forEach((item, index) => {
     const checkbox = item.querySelector('.checkbox');
     const countInput = item.querySelector('#count');
-    
 
     deleteItem.addEventListener('click', (e) => {
       e.preventDefault();
 
-      console.log(checkbox.checked);
-
       if (checkbox.checked) {
         dataChange(index, totalChecked);
+        checkbox.checked = false;
         init();
       }
-
-      checkbox.checked = false;
-    }, false)
+    })
 
     item.addEventListener('click', (e) => {
       if (e.target.classList.contains('checkbox-template')) {
