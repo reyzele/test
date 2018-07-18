@@ -8,7 +8,6 @@ const webpack = require("webpack");
 const webpackConfig = require("./webpack.config.js");
 const moduleImporter = require("sass-module-importer");
 const del = require("del");
-const cssunit = require("gulp-css-unit");
 
 const SRC_DIR = "src";
 const DIST_DIR = "public/";
@@ -34,10 +33,6 @@ gulp.task("styles", () => {
         })
       )
       .pipe($gp.sourcemaps.write())
-      /* .pipe(cssunit({
-      type: 'px-to-rem',
-      rootSize: 16
-    })) */
       .pipe($gp.rename({ suffix: ".min" }))
       .pipe(gulp.dest(`${DIST_DIR}/styles/`))
       .pipe(reload({ stream: true }))
@@ -68,7 +63,6 @@ gulp.task("images", () => {
   return (
     gulp
       .src([`${SRC_DIR}/images/**/*.*`])
-      /* .pipe(imagemin({ optimizationLevel: 7 })) */
       .pipe(gulp.dest(`${DIST_DIR}/images/`))
   );
 });

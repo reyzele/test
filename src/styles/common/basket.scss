@@ -45,7 +45,7 @@
 
 .basket__item {
   display: flex;
-  height: 72px;
+  min-height: 72px;
 
   &:nth-child(2n) {
     background: #f1f1f1;
@@ -111,7 +111,7 @@ input[type="checkbox"]:checked + .checkbox-template {
 }
 
 .basket__item-price {
-  width: 302px;
+  min-width: 302px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;

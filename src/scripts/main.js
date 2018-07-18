@@ -1,9 +1,8 @@
-import { createOverlay } from './common/overlay';
-import { init } from './common/Init'
+import { Init } from './common/Init'
+const states = {
+  flag: false
+} 
 
-const overlayTemplate = document.querySelector("#overlayTemplate").innerHTML;
-const overlay = createOverlay(overlayTemplate);
+Init();
 
-init();
-
-export { overlay };
+export { states };

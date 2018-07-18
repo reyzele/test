@@ -1,6 +1,9 @@
 import catalog from './catalog';
-import { init } from './Init'
-import { overlay } from '../main';
+import { Init } from './Init'
+import { states } from '../main';
+
+const overlayTemplate = document.querySelector("#overlayTemplate").innerHTML;
+const Overlay = createOverlay(overlayTemplate);
 
 function createOverlay(template) {
   let fragment = document.createElement("div");
@@ -21,7 +24,7 @@ function createOverlay(template) {
   fragment = null;
 
   function setTotalPrice() {
-    total.innerHTML = count.value * price.innerHTML;
+    total.innerHTML = count.value * parseInt(price.innerHTML) + ' р';
   }
 
   function closeOverlayFunc(e) {
@@ -29,13 +32,12 @@ function createOverlay(template) {
 
     while (overlayOpen && !target === target.classList.contains('overlay')) {
       if (target.classList.contains('wrapper')) {
-        overlay.close();
+        Overlay.close();
         return 0;
       } else {
         target = target.parentElement;
       }
     }
-
     return 0;
   }
 
@@ -45,16 +47,17 @@ function createOverlay(template) {
     e.preventDefault();
 
     if (e.target === saveButton) {
-      catalog[itemID - 1].count = +count.value;
-      overlay.close();
-      init();
+      catalog[itemID].count = +count.value;
+      Overlay.close();
+      states.flag = false;
+      Init();
     } else if (e.target === closeOverlay) {
-      overlay.close();
+      Overlay.close();
     }
   });
 
   [minus, plus].forEach(item => {
-    item.addEventListener('click', function (e) {
+    item.addEventListener('click', function () {
       if (this === plus) {
         count.value++;
       } else if (this === minus) {
@@ -88,11 +91,16 @@ function createOverlay(template) {
       overlayOpen = false;
     },
     setContent(content) {
-      price.innerHTML = content.dataset.price;
-      count.value = content.dataset.count;
-      total.innerHTML = (content.dataset.count * content.dataset.price)
+      const price_ = content.dataset.price;
+      const count_ = content.dataset.count;
+      const total_ = count_ * price_;
+
+      price.innerHTML = price_ + ' x';
+      total.innerHTML = total_ + ' р';
+
+      count.value = count_;
     }
   };
 }
 
-export { createOverlay };
+export { Overlay };

@@ -8,7 +8,6 @@ function renderItems(itemsList, catalog) {
   });
 
   itemsList.innerHTML = render({ items: catalog });
-  calculatePrice(catalog);
 }
 
 function renderTotalPrice() {
@@ -25,11 +24,11 @@ function getSum(arr) {
   return arr.reduce((sum, item) => { return sum + item.count * item.price }, 0);
 }
 
-function calculatePrice(arr) {
+function calculatePrice(data) {
   const totalPrice = document.querySelectorAll('#total');
 
   totalPrice.forEach((item, index) => {
-    const total = arr[index].price * arr[index].count;
+    const total = data[index].price * data[index].count;
 
     item.innerHTML = total + " р";
   })
@@ -41,12 +40,4 @@ function setCount(number) {
   countOfChecks.innerHTML = number;
 }
 
-function dataChange(index, totalChecked) {
-  catalog.splice(index, totalChecked);
-
-  catalog.forEach((item, index) => {
-    item.id = index + 1;
-  })
-}
-
-export { renderItems, renderTotalPrice, setCount, dataChange }
+export { renderItems, renderTotalPrice, calculatePrice, setCount }

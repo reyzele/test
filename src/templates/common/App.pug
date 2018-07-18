@@ -36,7 +36,7 @@
   |     <div class="basket__item-icon"><img class="basket__item-img" src="{{img}}" alt="{{name}}"></div>
   |     <div class="basket__item-desc">{{name}}</div>
   |     <div class="basket__item-price"><span class="basket__item-price_one">{{price}} р</span><span class="basket__item-price_one">X</span>
-  |       <input class="input basket__item-input" id="count" value="{{count}}" data-id="{{id}}" data-count="{{count}}" data-name="{{name}}" data-price="{{price}}"><span class="basket__item-price_one">=</span><span class="basket__item-price_total" id="total"></span>
+  |       <input class="input basket__item-input" id="count" value="{{count}}" data-id="{{@index}}" data-count="{{count}}" data-name="{{name}}" data-price="{{price}}"><span class="basket__item-price_one">=</span><span class="basket__item-price_total" id="total"></span>
   |     </div>
   |   </li>
   |   {{/each}}
