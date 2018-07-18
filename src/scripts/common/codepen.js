@@ -109,7 +109,7 @@ function init(checkedItems = []) {
           checkedItems.push(index)
         } else {
           totalCount -= catalog[index].count;
-          checkedItems.splice(index, 1)
+          checkedItems.splice(checkedItems.length - 1, checkedItems.length);
         }
         setCount(totalCount);
       }
