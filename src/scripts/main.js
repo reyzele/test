@@ -1,6 +1,7 @@
 import { Init } from './common/Init'
 const states = {
-  flag: false
+  flag: false,
+  checkedItems: []
 } 
 
 Init();

@@ -3,7 +3,7 @@ import { renderItems, renderTotalPrice, setCount, calculatePrice } from './handl
 import { Overlay } from './createOverlay';
 import { states } from '../main';
 
-function Init(checkedItems = []) {
+function Init() {
   const itemsList = document.querySelector('.basket__list');
   const deleteItems = document.querySelector('#deleteItem');
   let totalCount = 0;
@@ -19,15 +19,15 @@ function Init(checkedItems = []) {
     e.preventDefault();
 
     if (!states.flag) {
-      checkedItems = []
+      states.checkedItems = []
     }
 
-    if (checkedItems.length) {
-      checkedItems.sort((a, b) => b > a);
-      checkedItems.forEach((item) => {
+    if (states.checkedItems.length) {
+      states.checkedItems.sort((a, b) => b > a);
+      states.checkedItems.forEach((item) => {
         catalog.splice(item, 1);
       })
-      checkedItems = [];
+      states.checkedItems = [];
       Init();
     }
   })
@@ -43,12 +43,12 @@ function Init(checkedItems = []) {
 
         if (!checkbox.checked) {
           totalCount += catalog[index].count;
-          checkedItems.push(index);
+          states.checkedItems.push(index);
         } else {
           totalCount -= catalog[index].count;
-          checkedItems.forEach((item, index_) => {
+          states.checkedItems.forEach((item, index_) => {
             if (item === index) {
-              checkedItems.splice(index_, 1);
+              states.checkedItems.splice(index_, 1);
               return 0;
             }
           })
