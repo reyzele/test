@@ -10,7 +10,7 @@ function Init() {
 
   renderItems(itemsList, catalog);
   setCount(totalCount);
-  renderTotalPrice();
+  renderTotalPrice(catalog);
   calculatePrice(catalog);
 
   const items = itemsList.querySelectorAll('.basket__item');

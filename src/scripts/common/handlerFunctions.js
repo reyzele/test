@@ -1,23 +1,21 @@
-import catalog from './catalog';
-
-function renderItems(itemsList, catalog) {
+function renderItems(itemsList, data) {
   const template = document.querySelector('#item-template').innerHTML;
   const render = Handlebars.compile(template);
   Handlebars.registerHelper('inc', function (value) {
     return parseInt(value) + 1;
   });
 
-  itemsList.innerHTML = render({ items: catalog });
+  itemsList.innerHTML = render({ items: data });
 }
 
-function renderTotalPrice() {
+function renderTotalPrice(data) {
   const subTotal = document.querySelector('#subTotal');
   const taxTotal = document.querySelector('#taxTotal');
   const totalPrice = document.querySelector('#totalPrice');
 
-  subTotal.innerHTML = Math.round(getSum(catalog)) + " р";
-  taxTotal.innerHTML = Math.round(getSum(catalog) * 0.18) + " р";
-  totalPrice.innerHTML = Math.round(getSum(catalog) + (getSum(catalog) * 0.18)) + " р";
+  subTotal.innerHTML = Math.round(getSum(data)) + " р";
+  taxTotal.innerHTML = Math.round(getSum(data) * 0.18) + " р";
+  totalPrice.innerHTML = Math.round(getSum(data) + (getSum(data) * 0.18)) + " р";
 }
 
 function getSum(arr) {
