@@ -1,11 +1,11 @@
 import catalog from './catalog';
+import states from './states';
 import { renderItems, renderTotalPrice, setCount, calculatePrice } from './handlerFunctions';
 import { Overlay } from './createOverlay';
-import { states } from '../main';
 
 function Init() {
   const itemsList = document.querySelector('.basket__list');
-  const deleteItems = document.querySelector('#deleteItem');
+  const deleteItems = document.querySelector('#deleteItems');
   let totalCount = 0;
 
   renderItems(itemsList, catalog);
@@ -15,22 +15,20 @@ function Init() {
 
   const items = itemsList.querySelectorAll('.basket__item');
 
-  deleteItems.addEventListener('click', (e) => {
+  function deleteItemsHandler(e) {
     e.preventDefault();
 
-    if (!states.flag) {
-      states.checkedItems = []
-    }
-
     if (states.checkedItems.length) {
-      states.checkedItems.sort((a, b) => b > a);
-      states.checkedItems.forEach((item) => {
-        catalog.splice(item, 1);
-      })
+      states.checkedItems.sort((a, b) => b > a)
+        .forEach((item) => {
+          catalog.splice(item, 1);
+        })
       states.checkedItems = [];
       Init();
     }
-  })
+  }
+
+  deleteItems.addEventListener('click', deleteItemsHandler);
 
   items.forEach((item, index) => {
     const openCount = item.querySelector('#count');
@@ -38,14 +36,14 @@ function Init() {
     item.addEventListener('click', (e) => {
       if (e.target.classList.contains('checkbox-template')) {
         const checkbox = e.target.previousElementSibling;
-        states.flag = true;
-
 
         if (!checkbox.checked) {
-          totalCount += catalog[index].count;
+          totalCount++;
           states.checkedItems.push(index);
+          
         } else {
-          totalCount -= catalog[index].count;
+          totalCount--
+
           states.checkedItems.forEach((item, index_) => {
             if (item === index) {
               states.checkedItems.splice(index_, 1);

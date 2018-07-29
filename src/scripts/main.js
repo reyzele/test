@@ -1,9 +1,3 @@
-import { Init } from './common/Init'
-const states = {
-  flag: false,
-  checkedItems: []
-} 
+import { Init } from './common/Init';
 
 Init();
-
-export { states };

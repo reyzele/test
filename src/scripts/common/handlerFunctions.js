@@ -18,17 +18,20 @@ function renderTotalPrice(data) {
   totalPrice.innerHTML = Math.round(getSum(data) + (getSum(data) * 0.18)) + " р";
 }
 
-function getSum(arr) {
-  return arr.reduce((sum, item) => { return sum + item.count * item.price }, 0);
+function getSum(data) {
+  return data.reduce((sum, item) => { return sum + item.count * item.price }, 0);
 }
 
 function calculatePrice(data) {
-  const totalPrice = document.querySelectorAll('#total');
+  const totalPrice = document.querySelectorAll('.basket__item-price');
 
   totalPrice.forEach((item, index) => {
     const total = data[index].price * data[index].count;
+    const totalBlock = item.querySelector('#total')
+    const countInput = item.querySelector('#count')
 
-    item.innerHTML = total + " р";
+    countInput.value = data[index].count;
+    totalBlock.innerHTML = total + " р";
   })
 }
 

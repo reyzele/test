@@ -100,7 +100,6 @@ input[type="checkbox"]:checked + .checkbox-template {
 }
 
 .basket__item-desc {
-  max-width: 628px;
   flex: 1;
   padding: 0 27px;
   display: flex;
@@ -111,17 +110,17 @@ input[type="checkbox"]:checked + .checkbox-template {
 }
 
 .basket__item-price {
-  min-width: 302px;
+  min-width: 27%;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 20px;
   border-left: dotted 1px #454545;
   margin: .5px 0;
 
   span {
-    padding: 0 5px;
+    margin: 0 20px;
   }
 }
 

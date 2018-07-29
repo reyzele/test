@@ -55,11 +55,11 @@ block content
     .overlay
       .overlay__title Изменить количество
       .overlay__desc
-        span.overlay__text#price
+        nobr.overlay__text#price
         .overlay__square-shape#minus -
         input.input.overlay__input#overlayCount(type="text" value="1")
         .overlay__square-shape#plus +
-        span.overlay__text#overlayTotal
+        nobr.overlay__text#overlayTotal
       .overlay__controls
         a(href="#").overlay__link.overlay__link_blue#saveButton Сохранить
         a(href="#").overlay__link#closeOverlay Отменить

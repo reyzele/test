@@ -1,6 +1,7 @@
 import catalog from './catalog';
-import { Init } from './Init'
-import { states } from '../main';
+import states from './states';
+import { Init } from './Init';
+import { renderTotalPrice, calculatePrice } from './handlerFunctions';
 
 const overlayTemplate = document.querySelector("#overlayTemplate").innerHTML;
 const Overlay = createOverlay(overlayTemplate);
@@ -19,7 +20,6 @@ function createOverlay(template) {
   const closeOverlay = fragment.querySelector("#closeOverlay");
   const saveButton = fragment.querySelector("#saveButton");
   let itemID;
-  let overlayOpen = false;
 
   fragment = null;
 
@@ -30,15 +30,14 @@ function createOverlay(template) {
   function closeOverlayFunc(e) {
     let target = e.target;
 
-    while (overlayOpen && !target === target.classList.contains('overlay')) {
-      if (target.classList.contains('wrapper')) {
+    while (states.overlayOpen && !target === target.classList.contains('overlay')) {
+      if (target.tagName === 'BODY') {
         Overlay.close();
         return 0;
       } else {
         target = target.parentElement;
       }
     }
-    return 0;
   }
 
   document.addEventListener('click', closeOverlayFunc, true)
@@ -49,8 +48,9 @@ function createOverlay(template) {
     if (e.target === saveButton) {
       catalog[itemID].count = +count.value;
       Overlay.close();
-      states.flag = false;
-      Init();
+      
+      calculatePrice(catalog);
+      renderTotalPrice(catalog);
     } else if (e.target === closeOverlay) {
       Overlay.close();
     }
@@ -84,15 +84,15 @@ function createOverlay(template) {
       itemID = e.target.dataset.id;
       document.body.appendChild(overlayElement);
       setPosition(e);
-      overlayOpen = true;
+      states.overlayOpen = true;
     },
     close() {
       document.body.removeChild(overlayElement);
-      overlayOpen = false;
+      states.overlayOpen = false;
     },
     setContent(content) {
       const price_ = content.dataset.price;
-      const count_ = content.dataset.count;
+      const count_ = content.value;
       const total_ = count_ * price_;
 
       price.innerHTML = price_ + ' x';
