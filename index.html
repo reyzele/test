@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <link rel="stylesheet" href="./styles/main.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js" defer></script>
+    <script src="./scripts/main.bundle.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <header class="header"><a class="header__logo" href="#"><img class="header__logo_img" src="./images/logo.png" alt="logo"></a>
+          <div class="header__search">
+            <div class="header__search_input">
+              <label class="search__icon" for="search"><i class="fa fa-search"></i></label>
+              <input class="input search__input" id="search" name="search">
+            </div>
+            <div class="header__search_btn">
+              <label class="search__btn" for="save-btn" id="search-btn">
+                <button class="visuallyhidden" type="submit"></button>
+                <div class="search__btn_template" id="search-btn">Поиск</div>
+              </label>
+            </div>
+          </div>
+        </header>
+        <nav class="menu">
+          <ul class="menu__list">
+            <li class="menu__item"><a class="menu__link" href="#">каталог продукции</a><i class="i fa fa-angle-down"></i></li>
+            <li class="menu__item"><a class="menu__link" href="#">все бренды</a><i class="i fa fa-angle-down"></i></li>
+            <li class="menu__item"><a class="menu__link" href="#">подарки на 14 февраля</a><i class="i fa fa-angle-down"></i></li>
+            <li class="menu__item"><a class="menu__link" href="#">подарки на 14 февраля</a><i class="i fa fa-angle-down"></i></li>
+            <li class="menu__item"><a class="menu__link" href="#">подарки на 8 марта</a><i class="i fa fa-angle-down"></i></li>
+          </ul>
+        </nav>
+        <main class="main-content">
+          <nav class="main-content__breadcrumbs breadcrumbs">
+            <ul class="breadcrumbs__list">
+              <li class="breadcrumbs__item"> <a class="breadcrumbs__link breadcrumbs__link_active" href="#">Главная</a></li>
+              <li class="breadcrumbs__item"> <a class="breadcrumbs__link" href="#">Корзина</a></li>
+            </ul>
+          </nav>
+          <h2 class="main-content__title">корзина</h2>
+          <div class="main-content__desc">
+            <div class="basket" id="App">
+              <div class="basket__top-line">
+                <div class="basket__top-line_left"><span class="text">Выделено </span><span class="number" id="countOfChecks"></span></div><a class="basket__top-line_right" href="#" id="deleteItems"><i class="fa fa-window-close"></i><span class="text">Удалить отмеченные</span></a>
+              </div>
+              <div class="basket__desc">
+                <ul class="basket__list"></ul>
+              </div>
+              <div class="basket__footer">
+                <div class="basket__footer-top">
+                  <p class="basket__footer-raw"><span class="basket__footer-text">Промежуточный итог по корзине:</span><span class="basket__footer-price" id="subTotal"></span></p>
+                  <p class="basket__footer-raw"><span class="basket__footer-text">В том числе НДС:</span><span class="basket__footer-price" id="taxTotal"></span></p>
+                </div>
+                <div class="basket__footer-bottom">
+                  <p class="dot-line"></p>
+                  <p class="basket__footer-total"><span class="basket__footer-total_text">Итого:</span><span class="basket__footer-total_price" id="totalPrice"></span></p>
+                </div>
+              </div><script id="item-template" type="text/x-handlebars-template">
+                {{#each items}}
+                <li class='basket__item'>
+                  <div class="basket__item-enum">
+                    <label class="basket__item-checkbox" for="check_{{id}}">
+                      <input class="visuallyhidden checkbox" type="checkbox" name="check" id="check_{{id}}">
+                      <span class="checkbox-template"></span>
+                    </label>
+                    <span class="basket__item-id">{{inc @index}}</span>
+                  </div>
+                  <div class="basket__item-icon"><img class="basket__item-img" src="{{img}}" alt="{{name}}"></div>
+                  <div class="basket__item-desc">{{name}}</div>
+                  <div class="basket__item-price"><nobr class="basket__item-price_one">{{price}} р</nobr><span class="basket__item-price_one">X</span>
+                    <input class="input basket__item-input" id="count" value="{{count}}" data-id="{{@index}}" data-name="{{name}}" data-price="{{price}}"><span class="basket__item-price_one">=</span><nobr class="basket__item-price_total" id="total"></nobr>
+                  </div>
+                </li>
+                {{/each}}
+              </script>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script id="overlayTemplate" type="template">
+      <div class="overlay">
+        <div class="overlay__title">Изменить количество</div>
+        <div class="overlay__desc">
+          <nobr class="overlay__text" id="price"></nobr>
+          <div class="overlay__square-shape" id="minus">-</div>
+          <input class="input overlay__input" id="overlayCount" type="text" value="1">
+          <div class="overlay__square-shape" id="plus">+</div>
+          <nobr class="overlay__text" id="overlayTotal"></nobr>
+        </div>
+        <div class="overlay__controls"><a class="overlay__link overlay__link_blue" href="#" id="saveButton">Сохранить</a><a class="overlay__link" href="#" id="closeOverlay">Отменить</a></div>
+      </div>
+    </script>
+  </body>
+</html>
