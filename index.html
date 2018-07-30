@@ -52,7 +52,7 @@
                 <div class="basket__top-line_left"><span class="text">Выделено </span><span class="number" id="countOfChecks"></span></div><a class="basket__top-line_right" href="#" id="deleteItems"><i class="fa fa-window-close"></i><span class="text">Удалить отмеченные</span></a>
               </div>
               <div class="basket__desc">
-                <ul class="basket__list"></ul>
+                <table class="basket__list"></table>
               </div>
               <div class="basket__footer">
                 <div class="basket__footer-top">
@@ -65,20 +65,22 @@
                 </div>
               </div><script id="item-template" type="text/x-handlebars-template">
                 {{#each items}}
-                <li class='basket__item'>
-                  <div class="basket__item-enum">
-                    <label class="basket__item-checkbox" for="check_{{id}}">
-                      <input class="visuallyhidden checkbox" type="checkbox" name="check" id="check_{{id}}">
-                      <span class="checkbox-template"></span>
-                    </label>
-                    <span class="basket__item-id">{{inc @index}}</span>
-                  </div>
-                  <div class="basket__item-icon"><img class="basket__item-img" src="{{img}}" alt="{{name}}"></div>
-                  <div class="basket__item-desc">{{name}}</div>
-                  <div class="basket__item-price"><nobr class="basket__item-price_one">{{price}} р</nobr><span class="basket__item-price_one">X</span>
-                    <input class="input basket__item-input" id="count" value="{{count}}" data-id="{{@index}}" data-name="{{name}}" data-price="{{price}}"><span class="basket__item-price_one">=</span><nobr class="basket__item-price_total" id="total"></nobr>
-                  </div>
-                </li>
+                  <tr class='basket__item'>
+                   <td class="basket__item-enum">
+                     <label class="basket__item-checkbox" for="check_{{id}}">
+                       <input class="visuallyhidden checkbox" type="checkbox" name="check" id="check_{{id}}">
+                        <span class="checkbox-template"></span>
+                     </label>
+                     <td class="basket__item-id">{{inc @index}}</td>
+                    </td>
+                    <td class="basket__item-icon"><img class="basket__item-img" src="{{img}}" alt="{{name}}"></td>
+                    <td class="basket__item-desc">{{name}}</td>
+                   <td class="basket__item-price_one"><nobr>{{price}} р</nobr></td>
+                   <td class="basket__item-price_one">X</td>
+                   <td><input class="input basket__item-input" id="count" value="{{count}}" data-id="{{@index}}" data-name="{{name}}" data-price="{{price}}"></td>
+                   <td class="basket__item-price_one">=</td>
+                   <td class="basket__item-price_total"><nobr id="total"></nobr></td>
+                  </tr>
                 {{/each}}
               </script>
             </div>
