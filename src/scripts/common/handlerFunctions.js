@@ -23,9 +23,9 @@ function getSum(data) {
 }
 
 function calculatePrice(data) {
-  const totalPrice = document.querySelectorAll('.basket__item-price');
+  const item = document.querySelectorAll('.basket__item');
 
-  totalPrice.forEach((item, index) => {
+  item.forEach((item, index) => {
     const total = data[index].price * data[index].count;
     const totalBlock = item.querySelector('#total')
     const countInput = item.querySelector('#count')

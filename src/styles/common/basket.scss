@@ -38,14 +38,13 @@
 }
 
 .basket__list {
-  padding-bottom: 18px;
-  padding-top: 2px;
-  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  margin-bottom: 18px;
+  margin-top: 2px;
+  border-collapse: collapse;
 }
 
 .basket__item {
-  display: flex;
-  min-height: 72px;
 
   &:nth-child(2n) {
     background: #f1f1f1;
@@ -53,9 +52,6 @@
 }
 
 .basket__item-enum {
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
 }
 
 .checkbox-template {
@@ -69,8 +65,10 @@
 }
 
 .basket__item-checkbox {
+  justify-content: center;
   display: flex;
-  margin-right: 20px;
+  margin: 0 20px;
+  align-items: center;
 }
 
 input[type="checkbox"]:checked + .checkbox-template {
@@ -89,24 +87,19 @@ input[type="checkbox"]:checked + .checkbox-template {
 }
 
 .basket__item-icon {
-  overflow: hidden;
-  width: 94px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   padding: 0 20px;
-  border-left: dotted 1px #454545;
-  margin: .5px 0;
 }
 
 .basket__item-desc {
-  flex: 1;
-  padding: 0 27px;
-  display: flex;
-  align-items: center;
-  color: #252525;
+  padding: 0 25px;
   border-left: dotted 1px #454545;
-  margin: .5px 0;
+  border-right: dotted 1px #454545;
+}
+
+.basket__item-id {
+  padding: 0 20px;
+  border-right: dotted 1px #454545;
 }
 
 .basket__item-price {
@@ -127,6 +120,10 @@ input[type="checkbox"]:checked + .checkbox-template {
 .basket__item-input {
   width: 50px;
   text-align: center;
+}
+
+.basket__item-price_one {
+  padding: 0 10px;
 }
 
 .basket__footer {
@@ -176,4 +173,10 @@ input[type="checkbox"]:checked + .checkbox-template {
 .basket__footer-total_price {
   font-size: 24px;
   font-weight: bold;
+}
+
+table {
+  td {
+    padding: 25px 0;
+  }
 }
