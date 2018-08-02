@@ -45,14 +45,15 @@
 }
 
 .basket__item {
-  margin: 1px;
+  height: 72px;
 
   &:nth-child(2n) {
     background: #f1f1f1;
    } 
 }
 
-.basket__item-enum {
+.basket__item-img {
+  vertical-align: middle;
 }
 
 .checkbox-template {
@@ -93,13 +94,14 @@ input[type="checkbox"]:checked + .checkbox-template {
 }
 
 .basket__item-desc {
-  padding: 0 25px;
+  padding: 10px 25px;
   border-left: dotted 1px #454545;
   border-right: dotted 1px #454545;
 }
 
 .basket__item-id {
-  padding: 0 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-right: dotted 1px #454545;
 }
 
@@ -124,6 +126,10 @@ input[type="checkbox"]:checked + .checkbox-template {
 }
 
 .basket__item-price_one {
+  padding: 0 10px;
+}
+
+.basket__item-price_total {
   padding: 0 10px;
 }
 
@@ -174,10 +180,4 @@ input[type="checkbox"]:checked + .checkbox-template {
 .basket__footer-total_price {
   font-size: 24px;
   font-weight: bold;
-}
-
-table {
-  td {
-    padding: 25px 0;
-  }
 }
